@@ -14,8 +14,8 @@ def index
 	  @superlist = @pageIDList.map { |i| "" + i.to_s + "" }.join()
 	  getAttachmentUrls(@pageIDList)
 	  @attachment = @badboy	
-	  @attachment 	
-	  @attchurl
+ 	
+	  
 
 end
  

@@ -1,19 +1,9 @@
 <h1>Welcome To Conf-Board</h1>
-
- <%= @attchurl %>
-<!-- 
-<%= image_tag 'http://gmartin-pc:8080/download/attachments/3112966/bumble-bee-man.gif' %>
-
-
-<%= image_tag 'http://localhost:8080/download/attachments/3112968/confluence.png' %>
-
-
-<%= image_tag 'http://localhost:8080/download/attachments/3112964/analytics_week1.png' %> -->
-
+  
 <%=  @attachment.each do |att| %>
 
-	<% image_tag att %>
+	<%= image_tag att %>
 
 <% end %>
 
-
+  
