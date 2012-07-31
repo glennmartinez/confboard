@@ -1,9 +1,28 @@
-<h1>Welcome To Conf-Board</h1>
-  
-<%=  @attachment.each do |att| %>
+<h1>Confboard</h1>
+<div id="container">
 
+<%  @attachment.each do |att| %>
+<div class="item">
 	<%= image_tag att %>
+	<%= link_to "Page", show_contentpage_path %>
+
+</div>
 
 <% end %>
+</div> 
 
-  
+<%= controller.badass %>
+
+<script type="text/javascript">
+
+$('#container').isotope({
+
+	itemSelector : '.item',
+	layoutMode : 'fitRows'
+
+});
+
+
+
+
+  </script>

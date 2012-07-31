@@ -5,15 +5,15 @@ require 'xmlrpc/client'
 # before_filter :getPageID, :getAttachmentUrls
 
 
-
 def index
+    base_url = "http://localhost:8090"
 
-	  @confluence = XMLRPC::Client.new2("http://localhost:8080/rpc/xmlrpc").proxy("confluence2")
+	  @confluence = XMLRPC::Client.new2("#{base_url}/rpc/xmlrpc").proxy("confluence2")
  	  @token = @confluence.login("admin", "admin")
-	  @pageIDList = getPageID('FLIP') 
+	  @pageIDList = getPageID('SPACE') 
 	  @superlist = @pageIDList.map { |i| "" + i.to_s + "" }.join()
 	  getAttachmentUrls(@pageIDList)
-	  @attachment = @badboy	
+	  @attachment = @badboy
  	
 	  
 
@@ -61,8 +61,9 @@ end
  # @attachment = getAttachmentUrls(@pageIDList)
 
 
-
-
+def pageshow
+   @superbad = "This is awesomec coming here"
+end
 
 
 end
