@@ -3,15 +3,14 @@
 
 <%  @attachment.each do |att| %>
 <div class="item">
-	<%= image_tag att %>
-	<%= link_to "Page", show_contentpage_path %>
-
+	<%= att.first['id'] %>
+	<%= image_tag att.first['url'] %>
+     <%= controller.thebest %>
 </div>
 
 <% end %>
 </div> 
 
-<%= controller.badass %>
 
 <script type="text/javascript">
 

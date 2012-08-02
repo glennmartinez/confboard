@@ -6,13 +6,13 @@ require 'xmlrpc/client'
 
 
 def index
-    base_url = "http://localhost:8090"
+    base_url = "http://localhost:1990/confluence"
 
 	  @confluence = XMLRPC::Client.new2("#{base_url}/rpc/xmlrpc").proxy("confluence2")
  	  @token = @confluence.login("admin", "admin")
-	  @pageIDList = getPageID('SPACE') 
-	  @superlist = @pageIDList.map { |i| "" + i.to_s + "" }.join()
-	  getAttachmentUrls(@pageIDList)
+	  getPageID('ds') 
+	  # @superlist = @pageIDList.map { |i| "" + i.to_s + "" }.join()
+	  getAttachmentUrls(@pageIds)
 	  @attachment = @badboy
  	
 	  
@@ -24,9 +24,9 @@ def getPageID(space)
 
    pages = @confluence.getPages(@token, space)
    @pageIds = Array.new  
-   pages.map do |a|
-     @pageIds = Array.new  	
-   	 @pageIds << a["id"]
+   # pages.map do |a|
+    pages.each do |k|   	
+   	 @pageIds << k["id"]
    	 
    end
    
@@ -39,15 +39,15 @@ end
 
 
 def getAttachmentUrls(pagekeys)
-	@attachmentList = Array.new 
+	@fixlist = Array.new 
 	@badboy = Array.new
     pagekeys.each do |k|
     	    	
-    	key = k.map { |i| "" + i.to_s + "" }.join('')
-     	 fixlist = @confluence.getAttachments(@token, key)
- 		 if fixlist.length > 0
+    	# key = k.map { |i| "" + i.to_s + "" }.join('')
+     	 @fixlist = @confluence.getAttachments(@token, k)
+ 		 if @fixlist.length > 0
  		 	 
- 		 	 @badboy << fixlist.first["url"]
+ 		 	 @badboy << @fixlist #.first["url"]
  		 else
  		 	 
  		 end
@@ -58,12 +58,23 @@ def getAttachmentUrls(pagekeys)
 
 end
 
- # @attachment = getAttachmentUrls(@pageIDList)
+def arrayblender
 
+  updatelist = pages
 
-def pageshow
-   @superbad = "This is awesomec coming here"
+updatelist.each do |ul|
+  @badboy.each do |bb|
+    if ul['id'] == bb.first['pageId']
+      ul['imageurl'] = bb.first['url']
+      break
+    end
+
+  end
 end
+  
+end
+
+ # @attachment = getAttachmentUrls(@pageIDList)
 
 
 end

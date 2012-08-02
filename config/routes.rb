@@ -2,7 +2,7 @@ Confboard::Application.routes.draw do
  
 resources :confcontent
 
-match 'confcontent/page/:pageid'  => "confcontent#pageshow", :as => :show_contentpage
+# match 'confcontent/page/:pageid'  => "confcontent#pageshow", :as => :show_contentpage
 
   root :to => 'confcontent#index'
 
